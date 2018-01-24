@@ -6,33 +6,33 @@ namespace CustomContainers {
 
 class UIntSet {
     RedBlackTree tree;
-	
+    
 public:
     // iterator typdef
     // typedef RedBlackTree::Iterator Iterator;
     
     // default constructor
-	UIntSet() : tree() {}
+    UIntSet() : tree() {}
     
     // copy-constructor
-	UIntSet(const UIntSet& iSet) : tree(iSet.tree) {}
+    UIntSet(const UIntSet& iSet) : tree(iSet.tree) {}
     
     // move-constructor
-	UIntSet(UIntSet&& iSet) : tree(std::move(iSet.tree)) {}
+    UIntSet(UIntSet&& iSet) : tree(std::move(iSet.tree)) {}
     
     // copy-assignment operator
-	UIntSet& operator=(const UIntSet& iSet) 
-	{
-		if(&iSet == this) return *this;
+    UIntSet& operator=(const UIntSet& iSet) 
+    {
+        if(&iSet == this) return *this;
         tree = iSet.tree;
-	}
+    }
     
     // move-assignment operator
-	UIntSet& operator=(UIntSet&& iSet) 
-	{
-		if(&iSet == this) return *this;
-		tree = std::move(iSet.tree);		
-	}
+    UIntSet& operator=(UIntSet&& iSet) 
+    {
+        if(&iSet == this) return *this;
+        tree = std::move(iSet.tree);        
+    }
     
     // destructor
     ~UIntSet() {}

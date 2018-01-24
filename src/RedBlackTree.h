@@ -33,38 +33,38 @@ class RedBlackTree {
     
 public:
     // default constructor
-	RedBlackTree() : root(nullptr) {}
+    RedBlackTree() : root(nullptr) {}
     
     // copy-constructor
-	RedBlackTree(const RedBlackTree& iTree) : root(nullptr)
-	{ 
-		// copy all elements iterating through the whole iTree
-	}
+    RedBlackTree(const RedBlackTree& iTree) : root(nullptr)
+    { 
+        // copy all elements iterating through the whole iTree
+    }
     
     // move-constructor
-	RedBlackTree(RedBlackTree&& iTree)
-	{ 
-		root = iTree.root;
-		iTree.root = nullptr;
-	}
+    RedBlackTree(RedBlackTree&& iTree)
+    { 
+        root = iTree.root;
+        iTree.root = nullptr;
+    }
     
     // copy-assignment operator
-	RedBlackTree& operator=(const RedBlackTree& iTree) 
-	{
-		if(&iTree == this) return *this;
-		
-		// clear this set
-		// copy all elements iterating through the whole iSet
-	}
+    RedBlackTree& operator=(const RedBlackTree& iTree) 
+    {
+        if(&iTree == this) return *this;
+        
+        // clear this set
+        // copy all elements iterating through the whole iSet
+    }
     
     // move-assignment operator
-	RedBlackTree& operator=(RedBlackTree&& iTree) 
-	{
-		if(&iTree == this) return *this;
-		
-		root = iTree.root;
-		iTree.root = nullptr;		
-	}
+    RedBlackTree& operator=(RedBlackTree&& iTree) 
+    {
+        if(&iTree == this) return *this;
+        
+        root = iTree.root;
+        iTree.root = nullptr;       
+    }
     
     // destructor
     ~RedBlackTree() 
