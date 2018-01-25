@@ -178,6 +178,8 @@ bool findHelper(Node *iNode, unsigned int iValue)
 
 bool RedBlackTree::insert(unsigned int iValue)
 {
+    if ( find(iValue) ) return false; // TODO: This step can be skipped if proper changes are done to insertion
+    
     Node* newNode = new Node(iValue);
  
     // do a normal insertion without rebalancing
