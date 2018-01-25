@@ -5,7 +5,6 @@ Compiled for testing with gcc 6.4.0 via g++ src/main.cpp src/UIntSet.h src/RedBl
 
 TODO:
 1) Implement erase member function
-2) Implement copy constructor and copy-assignment operator of RedBlackTree
-3) Add iterators and iterator-based operations
-4) Write more sophisticated tests
+2) Add iterators and iterator-based operations
+3) Write more sophisticated tests
 

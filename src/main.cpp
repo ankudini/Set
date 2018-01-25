@@ -16,7 +16,25 @@ int main()
     uIntSet.insert(3);
     uIntSet.insert(323);
     uIntSet.insert(100);
-    uIntSet.print();
-    std::cout << "Element 22 is " << (uIntSet.find(22) ? "found" : " not found") << std::endl;
+    
+    CustomContainers::UIntSet copyConstructed(uIntSet);
+    std::cout << "CopyConstructed" << std::endl;
+    copyConstructed.print();
+    std::cout << std::endl;
+    
+    
+    std::cout << "CopyAssigned" << std::endl;
+    CustomContainers::UIntSet copyAssigned;
+    copyAssigned.insert(9999);
+    copyAssigned = uIntSet;
+    std::cout << "Element 22 is " << (copyAssigned.find(22) ? "found" : " not found") << std::endl;
+    
+    std::cout << "MoveAssigned" << std::endl;
+    CustomContainers::UIntSet moveAssigned;
+    moveAssigned.insert(555555);
+    moveAssigned = std::move(copyAssigned);
+    std::cout << "Size is " << moveAssigned.size() << std::endl;
+    
+
     return 0;
 }

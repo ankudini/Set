@@ -148,7 +148,7 @@ void rebalanceAfterInsertion(Node*& iRoot, Node*& iNode)
 } 
 
 // Depth-wise traversal and printing
-void printHelper(Node *iNode)
+void printHelper(Node* iNode)
 {
     if (iNode == nullptr) return;
  
@@ -158,7 +158,7 @@ void printHelper(Node *iNode)
 }
 
 // Find helper
-bool findHelper(Node *iNode, unsigned int iValue)
+bool findHelper(Node* iNode, unsigned int iValue)
 {
     if (iNode == nullptr) 
     {
@@ -174,6 +174,22 @@ bool findHelper(Node *iNode, unsigned int iValue)
     }
 }
 
+// copy helper
+void copyHelper(Node* iFrom, Node*& oTo, Node* iNewParent)
+{
+    if (iFrom == nullptr) 
+    {
+        return;
+    } 
+    else
+    {
+        oTo = new Node(iFrom->value);
+        oTo->parent = iNewParent;
+        copyHelper(iFrom->left, oTo->left, oTo);
+        copyHelper(iFrom->right, oTo->right, oTo);
+    }
+}
+
 }
 
 // default-constructor
@@ -182,7 +198,8 @@ RedBlackTree::RedBlackTree() : root(nullptr) {}
 // copy-constructor
 RedBlackTree::RedBlackTree(const RedBlackTree& iTree) : root(nullptr)
 { 
-    // copy all elements iterating through the whole iTree
+    copyHelper(iTree.root, root, nullptr);
+    treeSize = iTree.treeSize;
 }
 
 // move-constructor
@@ -190,6 +207,7 @@ RedBlackTree::RedBlackTree(RedBlackTree&& iTree)
 { 
     root = iTree.root;
     iTree.root = nullptr;
+    treeSize = std::move(iTree.treeSize);
 }
 
 // copy-assignment operator
@@ -197,8 +215,10 @@ RedBlackTree& RedBlackTree::operator=(const RedBlackTree& iTree)
 {
     if(&iTree == this) return *this;
     
-    // clear this set
-    // copy all elements iterating through the whole iSet
+    clear();
+    
+    copyHelper(iTree.root, root, nullptr);
+    treeSize = iTree.treeSize;
 }
 
 // move-assignment operator
@@ -208,6 +228,7 @@ RedBlackTree& RedBlackTree::operator=(RedBlackTree&& iTree)
     
     root = iTree.root;
     iTree.root = nullptr;       
+    treeSize = std::move(iTree.treeSize);
 }
 
 // destructor
