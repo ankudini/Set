@@ -176,6 +176,46 @@ bool findHelper(Node *iNode, unsigned int iValue)
 
 }
 
+// default-constructor
+RedBlackTree::RedBlackTree() : root(nullptr) {}
+    
+// copy-constructor
+RedBlackTree::RedBlackTree(const RedBlackTree& iTree) : root(nullptr)
+{ 
+    // copy all elements iterating through the whole iTree
+}
+
+// move-constructor
+RedBlackTree::RedBlackTree(RedBlackTree&& iTree)
+{ 
+    root = iTree.root;
+    iTree.root = nullptr;
+}
+
+// copy-assignment operator
+RedBlackTree& RedBlackTree::operator=(const RedBlackTree& iTree) 
+{
+    if(&iTree == this) return *this;
+    
+    // clear this set
+    // copy all elements iterating through the whole iSet
+}
+
+// move-assignment operator
+RedBlackTree& RedBlackTree::operator=(RedBlackTree&& iTree) 
+{
+    if(&iTree == this) return *this;
+    
+    root = iTree.root;
+    iTree.root = nullptr;       
+}
+
+// destructor
+RedBlackTree::~RedBlackTree() 
+{
+    clear();
+}
+
 bool RedBlackTree::insert(unsigned int iValue)
 {
     if ( find(iValue) ) return false; // TODO: This step can be skipped if proper changes are done to insertion
