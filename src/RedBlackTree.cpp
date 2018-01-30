@@ -29,7 +29,7 @@ Node* insertWithoutRebalance(Node* iRoot, Node* iNewNode)
  
 void rotateLeft(Node*& iRoot, Node*& iNode)
 {
-    Node *rightNode = iNode->right;
+    Node* rightNode = iNode->right;
     iNode->right = rightNode->left;
  
     if (iNode->right != nullptr)
@@ -58,7 +58,7 @@ void rotateLeft(Node*& iRoot, Node*& iNode)
  
 void rotateRight(Node*& iRoot, Node*& iNode)
 {
-    Node *leftNode = iNode->left;
+    Node* leftNode = iNode->left;
     iNode->left = leftNode->right;
  
     if (iNode->left != nullptr)
@@ -193,21 +193,20 @@ void copyHelper(Node* iFrom, Node*& oTo, Node* iNewParent)
 }
 
 // default-constructor
-RedBlackTree::RedBlackTree() : root(nullptr) {}
+RedBlackTree::RedBlackTree() : root(nullptr), treeSize(0)
+{
+}
     
 // copy-constructor
-RedBlackTree::RedBlackTree(const RedBlackTree& iTree) : root(nullptr)
+RedBlackTree::RedBlackTree(const RedBlackTree& iTree) : root(nullptr), treeSize(iTree.treeSize)
 { 
     copyHelper(iTree.root, root, nullptr);
-    treeSize = iTree.treeSize;
 }
 
 // move-constructor
-RedBlackTree::RedBlackTree(RedBlackTree&& iTree)
+RedBlackTree::RedBlackTree(RedBlackTree&& iTree) : root(iTree.root), treeSize(std::move(iTree.treeSize))
 { 
-    root = iTree.root;
     iTree.root = nullptr;
-    treeSize = std::move(iTree.treeSize);
 }
 
 // copy-assignment operator
@@ -216,7 +215,6 @@ RedBlackTree& RedBlackTree::operator=(const RedBlackTree& iTree)
     if(&iTree == this) return *this;
     
     clear();
-    
     copyHelper(iTree.root, root, nullptr);
     treeSize = iTree.treeSize;
 }
